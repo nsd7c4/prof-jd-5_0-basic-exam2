@@ -1,6 +1,7 @@
 package com.RashidGafurov_INC_LOL;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class EmployeeBook {
     private final Employee[] employees;
@@ -10,6 +11,10 @@ public class EmployeeBook {
         this.employees = new Employee[size];
     }
 
+    //Hard 4.a
+    //Добавить нового сотрудника (создаем объект, заполняем поля, кладем в массив).
+    //Нужно найти свободную ячейку в массиве и добавить нового сотрудника в нее.
+    //Искать нужно всегда с начала, так как возможно добавление в ячейку удаленных ранее сотрудников.
     public void addEmployee(String firstName, String lastName, int department, float salary) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
@@ -76,6 +81,8 @@ public class EmployeeBook {
         return totalSalary() / countOfEmployees();
     }
 
+    //Medium 1
+    //Проиндексировать зарплату (вызвать изменение зарплат у всех сотрудников на величину аргумента в %).
     public void indexSalary(float percentage) {
         for (Employee e :
                 employees) {
@@ -83,6 +90,8 @@ public class EmployeeBook {
         }
     }
 
+    //Medium 2.a
+    //Сотрудника с минимальной зарплатой.
     public void minSalaryByDep(int department) {
         float minS = Float.MAX_VALUE;
         int index = 0;
@@ -97,6 +106,8 @@ public class EmployeeBook {
         System.out.println(employees[index].fullName() + " have smallest salary of " + minS + "$ in department " + department);
     }
 
+    //Medium 2.b
+    //Сотрудника с максимальной зарплатой.
     public void maxSalaryByDep(int department) {
         float maxS = Float.MIN_VALUE;
         int index = 0;
@@ -122,6 +133,8 @@ public class EmployeeBook {
         return count;
     }
 
+    //Medium 2.c
+    //Сумму затрат на зарплату по отделу.
     public float salarySumByDepartment(int department) {
         float sum = 0f;
         for (Employee e :
@@ -133,11 +146,15 @@ public class EmployeeBook {
         return sum;
     }
 
+    //Medium 2.d
+    //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
     public float averageByDepartment(int department) {
         return salarySumByDepartment(department) / countBydDepartment(department);
     }
 
-    public void indexSalaryByDepartment(float percentage, int department) {
+    //Medium 2.e
+    //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
+    public void indexSalary(float percentage, int department) {
         for (Employee e :
                 employees) {
             if (e.getDepartment() == department) {
@@ -146,16 +163,54 @@ public class EmployeeBook {
         }
     }
 
+    //Medium 2.f
+    //Напечатать всех сотрудников отдела (все данные, кроме отдела).
     public void printAllEmployeesByDepartment(int department) {
         for (Employee e : employees) {
             if (e != null) {
                 if (e.getDepartment() == department) {
-                    System.out.println(e.toString());
+                    System.out.println(e.toString(true));
                 }
             }
         }
     }
 
+    public int getEmployeeIndex(int id) {
+        int index = -1;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                if (employees[i].getId() == id) {
+                    index = i;
+                    break;
+                }
+            }
+        }
+        if (index < 0) {
+            throw new RuntimeException("Индекс не может быть меньше 0");
+        } else {
+            return index;
+        }
+    }
+
+    public int getEmployeeIndex(String firstName, String lastName) {
+        int index = -1;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                if (employees[i].equalNames(firstName, lastName)) {
+                    index = i;
+                    break;
+                }
+            }
+        }
+        if (index < 0) {
+            throw new RuntimeException("Индекс не может быть меньше 0");
+        } else {
+            return index;
+        }
+    }
+
+    //Medium 3.b
+    //Всех сотрудников с зарплатой больше (или равно) числа (вывести id, Ф. И. О. и зарплатой в консоль).
     public void printAllEmployeesAbove(float salary) {
         for (Employee e : employees) {
             if (e != null) {
@@ -166,6 +221,8 @@ public class EmployeeBook {
         }
     }
 
+    //Medium 3.a
+    //Всех сотрудников с зарплатой меньше числа (вывести id, Ф. И. О. и зарплатой в консоль).
     public void printAllEmployeesBelow(float salary) {
         for (Employee e : employees) {
             if (e != null) {
@@ -176,21 +233,46 @@ public class EmployeeBook {
         }
     }
 
+
+    //Hard 4.b
+    //Удалить сотрудника (находим сотрудника по Ф. И. О. и/или id, обнуляем его ячейку в массиве).
     public void deleteEmployee(int id) {
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getId() == id) {
-                employees[i] = null;
-                break;
-            }
-        }
+        employees[getEmployeeIndex(id)] = null;
     }
 
     public void deleteEmployee(String firstName, String lastName) {
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getFirstName() == firstName && employees[i].getLastName() == lastName) {
-                employees[i] = null;
-                break;
-            }
+        employees[getEmployeeIndex(firstName, lastName)] = null;
+    }
+
+    //Hard 5.1
+    //Изменить сотрудника (получить сотрудника по Ф. И. О., модернизировать его запись):
+    //Изменить зарплату.
+    public void setSalary(String firstName, String lastName, float salary) {
+        employees[getEmployeeIndex(firstName, lastName)].setSalary(salary);
+    }
+
+    public void setSalary(int id, float salary) {
+        employees[getEmployeeIndex(id)].setSalary(salary);
+    }
+
+    //Hard 5.2
+    //Изменить отдел.
+    //Придумать архитектуру. Сделать или два метода, или один, но продумать его.
+    public void setDepartment(String firstName, String lastName, int department) {
+        employees[getEmployeeIndex(firstName, lastName)].setDepartment(department);
+    }
+
+    public void setDepartment(int id, int department) {
+        employees[getEmployeeIndex(id)].setDepartment(department);
+    }
+
+    //Hard 6
+    //Получить Ф. И. О. всех сотрудников по отделам (напечатать список отделов и их сотрудников).
+    public void printAllEmployeesByDepartment() {
+        for (int i = 1; i < 6; i++) {
+            System.out.println("Department " + i + ":");
+            printAllEmployeesByDepartment(i);
         }
     }
+
 }

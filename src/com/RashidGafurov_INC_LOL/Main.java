@@ -27,7 +27,7 @@ public class Main {
         employees.maxSalaryByDep(3);
         System.out.println("Average salary for department is " + employees.averageByDepartment(3) + "$.");
 
-        employees.indexSalaryByDepartment(25,3);
+        employees.indexSalary(25,3);
         employees.printAllEmployeesByDepartment(3);
 
         employees.printAllEmployeesAbove(500_000f);
@@ -36,9 +36,19 @@ public class Main {
         employees.deleteEmployee(0);
         employees.printAllEmployees();
 
-        employees.deleteEmployee("Tatiana", "Random");
+        System.out.println("ID " + employees.getEmployeeIndex("Alex", "Ryabkov"));
+        employees.deleteEmployee("Alex", "Ryabkov");
         employees.printAllEmployees();
 
+        //Hard 5.1
+        employees.setSalary(5,24000f);
+        employees.setSalary("Kostya", "Sink", 500f);
 
+        //Hard 5.2
+        employees.setDepartment(1,2);
+        employees.setDepartment("Max", "Smouzh",3);
+
+        //Hard 6
+        employees.printAllEmployeesByDepartment();
     }
 }
