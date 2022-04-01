@@ -53,7 +53,7 @@ public class Main {
 
         //Medium 2.d
         //Среднюю зарплату по отделу (учесть, что количество людей в отделе отличается от employees.length).
-        System.out.println("Average salary for department is " + employees.averageByDepartment(3) + "$.");
+        System.out.println("Average salary for department 3 is " + employees.averageByDepartment(3) + "$.");
 
         //Medium 2.e
         //Проиндексировать зарплату всех сотрудников отдела на процент, который приходит в качестве параметра.
