@@ -25,6 +25,8 @@ public class EmployeeBook {
         }
     }
 
+    //Easy 8.a
+    //Получить список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString)).
     public void printAllEmployees() {
         for (Employee e : employees) {
             if (e != null) {
@@ -33,6 +35,8 @@ public class EmployeeBook {
         }
     }
 
+    //Easy 8.b
+    //Посчитать сумму затрат на зарплаты в месяц.
     public float totalSalary() {
         float sum = 0.0f;
         for (Employee e :
@@ -42,7 +46,8 @@ public class EmployeeBook {
         return sum;
     }
 
-
+    //Easy 8.c
+    //Найти сотрудника с минимальной зарплатой.
     public void minSalary() {
         float minS = Float.MAX_VALUE;
         int index = 0;
@@ -55,6 +60,8 @@ public class EmployeeBook {
         System.out.println(employees[index].fullName() + " have smallest salary of " + minS + "$.");
     }
 
+    //Easy 8.d
+    //Найти сотрудника с максимальной зарплатой.
     public void maxSalary() {
         float maxS = Float.MIN_VALUE;
         int index = 0;
@@ -77,6 +84,8 @@ public class EmployeeBook {
         return count;
     }
 
+    //Easy 8.e
+    //Подсчитать среднее значение зарплат (можно использовать для этого метод из пункта b).
     public float averageSalary() {
         return totalSalary() / countOfEmployees();
     }
