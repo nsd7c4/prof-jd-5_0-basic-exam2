@@ -1,11 +1,8 @@
 package com.RashidGafurov_INC_LOL;
 
-import java.util.Arrays;
-import java.util.Objects;
-
 public class EmployeeBook {
     private final Employee[] employees;
-    private int size = 10;
+    private final int size = 10;
 
     public EmployeeBook() {
         this.employees = new Employee[size];
@@ -30,7 +27,7 @@ public class EmployeeBook {
     public void printAllEmployees() {
         for (Employee e : employees) {
             if (e != null) {
-                System.out.println(e.toString());
+                System.out.println(e);
             }
         }
     }
@@ -76,8 +73,8 @@ public class EmployeeBook {
 
     public int countOfEmployees() {
         int count = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null) {
+        for (Employee employee : employees) {
+            if (employee != null) {
                 count++;
             }
         }
@@ -224,7 +221,7 @@ public class EmployeeBook {
         for (Employee e : employees) {
             if (e != null) {
                 if (e.getSalary() >= salary) {
-                    System.out.println(e.toString());
+                    System.out.println(e);
                 }
             }
         }
@@ -236,7 +233,7 @@ public class EmployeeBook {
         for (Employee e : employees) {
             if (e != null) {
                 if (e.getSalary() < salary) {
-                    System.out.println(e.toString());
+                    System.out.println(e);
                 }
             }
         }

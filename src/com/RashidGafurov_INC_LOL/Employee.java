@@ -11,7 +11,6 @@ public class Employee {
     //Easy 3
     //Добавить в класс Employee поле id, которое проставляется из счетчика, а затем счетчик увеличивает свое значение.
     private int id;
-    private char currency;
     //Easy 2
     //Добавить статическую переменную-счетчик, которая будет отвечать за id.
     private static int idCounter = 0;
